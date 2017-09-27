@@ -49,7 +49,7 @@ If you see mentions of metadata other places in this documentation, it is usuall
 |---|---|-----|---|---|
 | changefreq | string | no | `weekly` | How frequently the page is likely to change |
 | lastmod | string | no | `null` | The date of the last modification of the file |
-| priority | decimal | no | `0.5` | How frequently the page is likely to change |
+| priority | decimal | no | `0.5` | The priority of this page relative to other pages |
 | private | bool | no | `false` | Private pages will be omitted from the sitemap |
 
 
