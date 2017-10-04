@@ -1,8 +1,10 @@
 import { initSearch, hideSearchResults } from "./search";
+import { updateSidebar } from "./navigation";
 
 document.addEventListener("DOMContentLoaded", function(event) {
     initBarba();
     initSearch();
+    updateSidebar();
 });
 
 function initBarba() {
@@ -11,6 +13,7 @@ function initBarba() {
     Barba.Dispatcher.on("newPageReady", function(currentStatus, oldStatus, container) {
         delete window.pageReady;
         hideSearchResults();
+        updateSidebar();
 
         const js = container.querySelector("script");
         if (js === null) {
