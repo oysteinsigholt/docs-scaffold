@@ -85,7 +85,6 @@ gulp.task("script:dev", (cb) => {
         .transform(babelify, { presets: ["es2015"] })
         .bundle()
         .pipe(source("script.js"))
-        .pipe(rename("script.js"))
         .pipe(gulp.dest("./build/script"))
         .on("end", cb);
 });
