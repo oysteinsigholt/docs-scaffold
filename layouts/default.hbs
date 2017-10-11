@@ -1,9 +1,31 @@
 <!doctype html>
 <html class="docs-html">
 <head>
+  <meta charset="utf-8">
   <title>{{ title }} - {{ docName }}</title>
+  {{#if description}}
+    <meta name="description" content="{{ description }}">
+  {{/if}}
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ title }} - {{ docName }}">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="{{ thumbnail }}">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="{{ title }} - {{ docName }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ hostname }}{{ url }}" />
+  <meta property="og:image" content="{{ thumbnail }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:site_name" content="{{ docName }}" />
+
   <link rel="stylesheet" type="text/css" href="{{ webRoot }}style/style.css">
+  {{#if enableOpenApi }}
+    <link rel="stylesheet" type="text/css" href="{{ webRoot }}script/swagger-ui/swagger-ui-docs-preset.css">
+  {{/if}}
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link id="searchIndex" href="{{ webRoot }}index.json" rel="preload" as="fetch">
 </head>
@@ -48,6 +70,10 @@
       <ul id="docs-search__results" class="docs-search__results"></ul>
     </div>
   </div>
+  {{#if enableOpenApi }}
+    <script src="{{ webRoot }}script/swagger-ui/swagger-ui-bundle.js" ></script>
+    <script src="{{ webRoot }}script/swagger-ui/swagger-ui-docs-preset.js" ></script>
+  {{/if}}
   <script src="{{ webRoot }}script/vendor.js" ></script>
   <script src="{{ webRoot }}script/script.js" ></script>
 </body>
