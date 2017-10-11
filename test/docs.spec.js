@@ -6,6 +6,8 @@ const metalsmith = require("metalsmith");
 const markdown = require("metalsmith-markdown");
 const blc = require("metalsmith-broken-link-checker");
 const prepluginprocessor = require("../lib/prepluginprocessor");
+const postpluginprocessor = require("../lib/postpluginprocessor");
+
 
 const expect = require("chai").expect;
 
@@ -51,6 +53,7 @@ describe("documentation", () => {
                     gfm: true,
                     tables: true
                 }))
+                .use(postpluginprocessor())
                 .use(blc({
                     baseURL: config.webRoot
                 }))
