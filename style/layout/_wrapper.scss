@@ -1,8 +1,11 @@
 .docs-wrapper {
+  @media only screen and (min-width: 1024px) {
+    margin-left: 260px;
+    padding-left: calc(50% - 764px / 2 - 260px + .5 * (100vw - 100%));
+  }
+
   position: relative;
   min-height: 100vh;
-  margin-left: 260px;
-  padding-left: calc(50% - 940px / 2 - 260px + .5 * (100vw - 100%));
   background: white;
   background-clip: content-box;
   z-index: 1;
