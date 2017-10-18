@@ -1,3 +1,5 @@
+import { closeSidebar } from "./script";
+
 let searchIndex = null;
 let searchFiles = null;
 
@@ -71,6 +73,7 @@ function search(text) {
         hideSearchResults();
         return;
     }
+    closeSidebar();
 
     const results = searchIndex.search(text);
     document.getElementById("docs-search__results").innerHTML = "";

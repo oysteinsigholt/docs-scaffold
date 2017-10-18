@@ -12,6 +12,7 @@ function initBarba() {
         delete window.pageReady;
         hideSearchResults();
         scrollToTop();
+        closeSidebar();
 
         const js = container.querySelector("script");
         if (js === null) {
@@ -35,3 +36,9 @@ function scrollToTop() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function closeSidebar() {
+    document.getElementById("docs-sidebar-toggle").checked = false;
+}
+
+export { closeSidebar };
