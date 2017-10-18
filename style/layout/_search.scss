@@ -1,14 +1,21 @@
 .docs-search {
+  @media only screen and (min-width: 1024px) {
+    max-width: 764px;
+    margin-left: 260px;
+    padding-left: calc(50% - 764px / 2 - 260px + .5 * (100vw - 100%));
+  }
+
+  @media only screen and (max-width: 1024px) {
+    max-width: 1024px;
+  }
+
   display: none;
-  position: absolute;
-  top: 0;
   width: 100%;
-  max-width: 940px;
-  height: calc(100% - 64px);
-  box-sizing: border-box;
+  height: calc(100vh - 64px);
   pointer-events: auto;
-  margin-top: 64px;
-  z-index: 1;
+  margin: auto;
+  overflow-y: auto;
+  background-color: white;
 
   &__close {
     width: 48px;
@@ -23,11 +30,9 @@
   }
 
   &__results {
-    height: calc(100% - 64px);
     list-style-type: none;
     margin: 0;
-    padding: 48px;
-    padding-top: 12px;
+    padding: 12px 48px 48px;
     background-color: white;
 
     h2 {

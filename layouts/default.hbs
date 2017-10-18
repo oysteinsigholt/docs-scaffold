@@ -30,34 +30,39 @@
   <link id="searchIndex" href="{{ webRoot }}index.json" rel="preload" as="fetch">
 </head>
 <body class="docs-body">
-  <div class="docs-sidebar">
-    <nav class="docs-nav">
-      <a class="docs-nav__logo" href="{{ webRoot }}"></a>
-        {{> _nav navs.primary}}
-        {{#if navs.secondary }}
-          <hr class="docs-nav__hr" />
-          {{> _nav navs.secondary}}
-        {{/if}}
-        {{#if navs.tertiary }}
-          <hr class="docs-nav__hr" />
-          {{> _nav navs.tertiary}}
-        {{/if}}
-    </nav>
-  </div>
-  <div id="barba-wrapper" class="docs-wrapper">
-    <div class="docs-topbar">
+  <div class="docs-topbar">
+    <div class="docs-topbar__search">
+      <div class="docs-topbar__menu-icon">
+        <label for="docs-sidebar-toggle"><i class="material-icons md-64">menu</i></label>
+        <input type="checkbox" id="docs-sidebar-toggle" class="docs-sidebar-toggle" />
+        <div class="docs-sidebar">
+          <nav class="docs-nav">
+            <a class="docs-nav__logo" href="{{ webRoot }}"></a>
+              {{> _nav navs.primary}}
+              {{#if navs.secondary }}
+                <hr class="docs-nav__hr" />
+                {{> _nav navs.secondary}}
+              {{/if}}
+              {{#if navs.tertiary }}
+                <hr class="docs-nav__hr" />
+                {{> _nav navs.tertiary}}
+              {{/if}}
+          </nav>
+        </div>
+      </div>
       <div class="docs-topbar__search-icon">
         <i class="material-icons md-64">search</i>
       </div>
-      <div class="docs-topbar__search">
-        <input id="docs-search-box" type="text" class="docs-topbar__searchinput" placeholder="Search" tabindex="1" autocapitalize="none" autocomplete="off" autocorrect="off" type="text" autofocus />
-      </div>
+      <input id="docs-search-box" type="text" class="docs-topbar__searchinput" placeholder="Search" tabindex="1" autocapitalize="none" autocomplete="off" autocorrect="off" type="text" autofocus />
       <a href="#" id="docs-search__close" class="docs-search__close"><i class="material-icons md-64">close</i></a>
-      <div class="docs-topbar__links">
-        <a class="docs-topbar__link" href="#">Support</a>
-        <a class="docs-topbar__link" href="#">Dashboard</a>
-      </div>
+      <a class="docs-topbar__link" href="#">Support</a>
+      <a class="docs-topbar__link" href="#">Dashboard</a>
     </div>
+    <div id="docs-search" class="docs-search">
+      <ul id="docs-search__results" class="docs-search__results"></ul>
+    </div>
+  </div>
+  <div id="barba-wrapper" class="docs-wrapper">
     <div class="docs-content barba-container">
       <h1>{{ title }}</h1>
       {{> _breadcrumbs }}
@@ -65,9 +70,6 @@
       {{#if editUrl }}
         <a class="docs-edit-btn" href="{{ editUrl }}" target="_blank">Edit this page</a>
       {{/if}}
-    </div>
-    <div id="docs-search" class="docs-search">
-      <ul id="docs-search__results" class="docs-search__results"></ul>
     </div>
   </div>
   {{#if enableOpenApi }}
