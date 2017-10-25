@@ -5,3 +5,11 @@
 
   padding-left: calc(100vw - 100%);
 }
+
+.docs-sidebar-toggle {
+  display: none;
+
+  &:checked ~ .docs-sidebar {
+    display: block !important;
+  }
+}

@@ -10,7 +10,7 @@ function initBarba() {
     Barba.Prefetch.init();
     Barba.Dispatcher.on("newPageReady", function(currentStatus, oldStatus, container) {
         delete window.pageReady;
-        hideSearchResults();
+        hideSearchResults(true);
         scrollToTop();
         closeSidebar();
 
@@ -40,5 +40,14 @@ function scrollToTop() {
 function closeSidebar() {
     document.getElementById("docs-sidebar-toggle").checked = false;
 }
+
+// hide sidebar on click outside
+document.addEventListener("click", function(e) {
+    if (e.x <= 260) {
+        return;
+    }
+
+    document.getElementById("docs-sidebar-toggle").checked = false;
+});
 
 export { closeSidebar };

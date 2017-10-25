@@ -31,8 +31,8 @@
 </head>
 <body class="docs-body">
   <div class="docs-topbar">
-    <div class="docs-topbar__search">
-      <div class="docs-topbar__menu-icon">
+    <div class="docs-topbar__inner">
+      <div id="docs-sidebar" class="docs-topbar__menu-icon">
         <label for="docs-sidebar-toggle"><i class="material-icons md-64">menu</i></label>
         <input type="checkbox" id="docs-sidebar-toggle" class="docs-sidebar-toggle" />
         <div class="docs-sidebar">
@@ -50,22 +50,25 @@
           </nav>
         </div>
       </div>
-      <div class="docs-topbar__search-icon">
-        <i class="material-icons md-64">search</i>
+      <div class="docs-search-area">
+        <label for="docs-search-area-toggle"><i class="material-icons md-64">search</i></label>
+        <input type="checkbox" id="docs-search-area-toggle" class="docs-search-area-toggle" />
+        <a href="#" id="docs-search-close" class="docs-search-close"><i class="material-icons md-64">close</i></a>
+        <input id="docs-search-box" type="text" class="docs-search-box" placeholder="Search" tabindex="1" autocapitalize="none" autocomplete="off" autocorrect="off" autofocus />
       </div>
-      <input id="docs-search-box" type="text" class="docs-topbar__searchinput" placeholder="Search" tabindex="1" autocapitalize="none" autocomplete="off" autocorrect="off" type="text" autofocus />
-      <a href="#" id="docs-search__close" class="docs-search__close"><i class="material-icons md-64">close</i></a>
       <a class="docs-topbar__link" href="#">Support</a>
       <a class="docs-topbar__link" href="#">Dashboard</a>
     </div>
     <div id="docs-search" class="docs-search">
-      <ul id="docs-search__results" class="docs-search__results"></ul>
+      <ul id="docs-search-results" class="docs-search-results"></ul>
     </div>
   </div>
   <div id="barba-wrapper" class="docs-wrapper">
     <div class="docs-content barba-container">
       <h1>{{ title }}</h1>
-      {{> _breadcrumbs }}
+      {{#unless index }}
+        {{> _breadcrumbs }}
+      {{/unless}}
       {{{ contents }}}
       {{#if editUrl }}
         <a class="docs-edit-btn" href="{{ editUrl }}" target="_blank">Edit this page</a>
