@@ -1,0 +1,9 @@
+@mixin docs-glyph-hover() {
+  color: $docs-color--black54;
+  cursor: pointer;
+
+  &:hover {
+    transition: color .1s ease;
+    color: $docs-color--black38;
+  }
+}

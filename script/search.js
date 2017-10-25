@@ -9,10 +9,15 @@ function initSearch() {
 }
 
 function initHandlers() {
+    // focus search box on icon click
+    document.getElementById("docs-search-area-toggle").addEventListener("click", function(e) {
+        focusSearchBox();
+    });
+
     // search close button
-    document.getElementById("docs-search__close").addEventListener("click", function(e) {
+    document.getElementById("docs-search-close").addEventListener("click", function(e) {
         e.preventDefault();
-        hideSearchResults();
+        hideSearchResults(true);
         clearSearchBox();
     });
 
@@ -37,7 +42,7 @@ function initHandlers() {
         const key = e.key;
 
         if (key === "Escape" || charCode === "27") {
-            hideSearchResults();
+            hideSearchResults(true);
             clearSearchBox();
         }
     });
@@ -50,7 +55,10 @@ function initHandlers() {
         if (e.path.includes(document.getElementById("docs-search-box"))) {
             return;
         }
-        hideSearchResults();
+        if (e.path.includes(document.getElementById("docs-search-area-toggle"))) {
+            return;
+        }
+        hideSearchResults(true);
     });
 }
 
@@ -70,25 +78,27 @@ function loadSearchIndex() {
 
 function search(text) {
     if (searchIndex === null || text === "") {
-        hideSearchResults();
+        hideSearchResults(false);
         return;
     }
     closeSidebar();
 
     const results = searchIndex.search(text);
-    document.getElementById("docs-search__results").innerHTML = "";
+    document.getElementById("docs-search-results").innerHTML = "";
 
     if (results.length < 1) {
         const result = document.createElement("li");
-        result.innerHTML = "<h2>No matches found</h2>";
-        document.getElementById("docs-search__results").appendChild(result);
+        result.innerHTML = "<h2>No results for <em></em><small> (search requires whole words)</small></h2>";
+        result.querySelector("em").appendChild(document.createTextNode(text));
+
+        document.getElementById("docs-search-results").appendChild(result);
     }
 
     let i = 1;
     for (const key in results) {
         i++;
         const result = document.createElement("li");
-        result.className = "docs-search__result";
+        result.className = "docs-search-result";
 
         const resultLink = document.createElement("a");
         resultLink.setAttribute("href", results[key].ref);
@@ -97,28 +107,38 @@ function search(text) {
         result.appendChild(resultLink);
 
         const details = document.createElement("p");
-        details.className = "docs-search__details";
+        details.className = "docs-search-result__details";
 
         if (typeof searchFiles[results[key].ref].description === "string") {
             details.innerHTML = searchFiles[results[key].ref].description;
         }
 
         result.appendChild(details);
-        document.getElementById("docs-search__results").appendChild(result);
+        document.getElementById("docs-search-results").appendChild(result);
     }
     showSearchResults();
 }
 
 function showSearchResults() {
     document.getElementById("docs-search").style.display = "block";
-    document.getElementById("docs-search__close").style.opacity = "1";
-    document.getElementById("docs-search__close").style.pointerEvents = "auto";
+    document.getElementById("docs-search-close").style.opacity = "1";
+    document.getElementById("docs-search-close").style.pointerEvents = "auto";
+    document.getElementById("docs-search-area-toggle").checked = true;
 }
 
-function hideSearchResults() {
+function hideSearchResults(hideInputBox) {
     document.getElementById("docs-search").style.display = "none";
-    document.getElementById("docs-search__close").style.opacity = "0";
-    document.getElementById("docs-search__close").style.pointerEvents = "none";
+    document.getElementById("docs-search-close").style.opacity = "0";
+    document.getElementById("docs-search-close").style.pointerEvents = "none";
+
+    if (hideInputBox) {
+        document.getElementById("docs-search-area-toggle").checked = false;
+    }
+}
+
+
+function focusSearchBox() {
+    document.getElementById("docs-search-box").focus();
 }
 
 function clearSearchBox() {

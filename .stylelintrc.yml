@@ -5,3 +5,4 @@ rules:
   - true
   - ignoreAtRules:
     - 'include'
+    - 'mixin'
