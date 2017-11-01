@@ -74,9 +74,7 @@ function initHandlers() {
     });
 
     window.addEventListener("resize", (event) => {
-        if (document.getElementById("docs-search-box").value === "") {
-            hideSearchField();
-        } else {
+        if (document.getElementById("docs-search-box").value !== "") {
             showSearchField();
         }
     });
