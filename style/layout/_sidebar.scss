@@ -4,12 +4,14 @@
   }
 
   padding-left: calc(100vw - 100%);
-}
 
-.docs-sidebar-toggle {
-  display: none;
+  &--open {
+    display: block;
+  }
 
-  &:checked ~ .docs-sidebar {
-    display: block !important;
+  .docs-menuLinks {
+    @media only screen and (min-width: 1024px) {
+      display: none;
+    }
   }
 }

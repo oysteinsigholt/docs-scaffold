@@ -1,4 +1,4 @@
-import { closeSidebar } from "./script";
+import { closeSidebar } from "./sidebar";
 
 let searchIndex = null;
 let searchFiles = null;
@@ -10,15 +10,16 @@ function initSearch() {
 
 function initHandlers() {
     // focus search box on icon click
-    document.getElementById("docs-search-area-toggle").addEventListener("click", function(e) {
+    document.getElementById("docs-search-show").addEventListener("click", function(e) {
         focusSearchBox();
     });
 
     // search close button
     document.getElementById("docs-search-close").addEventListener("click", function(e) {
         e.preventDefault();
-        hideSearchResults(true);
+        hideSearchResults();
         clearSearchBox();
+        focusSearchBox();
     });
 
     // search on input change
@@ -42,7 +43,8 @@ function initHandlers() {
         const key = e.key;
 
         if (key === "Escape" || charCode === "27") {
-            hideSearchResults(true);
+            hideSearchResults();
+            hideSearchField();
             clearSearchBox();
         }
     });
@@ -52,16 +54,33 @@ function initHandlers() {
         if (e.path.includes(document.getElementById("docs-search"))) {
             return;
         }
-        if (e.path.includes(document.getElementById("docs-search-box"))) {
-            return;
+        if (e.path.includes(document.getElementById("docs-topbar"))) {
+            if (!e.path.includes(document.getElementById("docs-menu-toggle"))) {
+                return;
+            }
         }
-        if (e.path.includes(document.getElementById("docs-search-area-toggle"))) {
-            return;
+
+        hideSearchResults();
+        hideSearchField();
+    });
+
+    document.getElementById("docs-search-show").addEventListener("click", function(e) {
+        showSearchField();
+    });
+
+    document.getElementById("docs-search-hide").addEventListener("click", function(e) {
+        hideSearchResults();
+        hideSearchField();
+    });
+
+    window.addEventListener("resize", (event) => {
+        if (document.getElementById("docs-search-box").value === "") {
+            hideSearchField();
+        } else {
+            showSearchField();
         }
-        hideSearchResults(true);
     });
 }
-
 
 function loadSearchIndex() {
     const xhttp = new XMLHttpRequest();
@@ -78,7 +97,7 @@ function loadSearchIndex() {
 
 function search(text) {
     if (searchIndex === null || text === "") {
-        hideSearchResults(false);
+        hideSearchResults();
         return;
     }
     closeSidebar();
@@ -119,23 +138,26 @@ function search(text) {
     showSearchResults();
 }
 
+function showSearchField() {
+    document.getElementById("docs-topbar__inner").classList.add("docs-topbar__inner--search-open");
+}
+
+function hideSearchField() {
+    document.getElementById("docs-topbar__inner").classList.remove("docs-topbar__inner--search-open");
+    document.getElementById("docs-search-box").value = "";
+}
+
 function showSearchResults() {
     document.getElementById("docs-search").style.display = "block";
     document.getElementById("docs-search-close").style.opacity = "1";
     document.getElementById("docs-search-close").style.pointerEvents = "auto";
-    document.getElementById("docs-search-area-toggle").checked = true;
 }
 
-function hideSearchResults(hideInputBox) {
+function hideSearchResults() {
     document.getElementById("docs-search").style.display = "none";
     document.getElementById("docs-search-close").style.opacity = "0";
     document.getElementById("docs-search-close").style.pointerEvents = "none";
-
-    if (hideInputBox) {
-        document.getElementById("docs-search-area-toggle").checked = false;
-    }
 }
-
 
 function focusSearchBox() {
     document.getElementById("docs-search-box").focus();
@@ -145,4 +167,4 @@ function clearSearchBox() {
     document.getElementById("docs-search-box").value = "";
 }
 
-export { initSearch, hideSearchResults };
+export { initSearch, hideSearchField, hideSearchResults };

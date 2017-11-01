@@ -1,8 +1,10 @@
-import { initSearch, hideSearchResults } from "./search";
+import { initSearch, hideSearchField, hideSearchResults } from "./search";
+import { initSidebar, closeSidebar } from "./sidebar";
 
 document.addEventListener("DOMContentLoaded", function(event) {
     initBarba();
     initSearch();
+    initSidebar();
 });
 
 function initBarba() {
@@ -10,7 +12,8 @@ function initBarba() {
     Barba.Prefetch.init();
     Barba.Dispatcher.on("newPageReady", function(currentStatus, oldStatus, container) {
         delete window.pageReady;
-        hideSearchResults(true);
+        hideSearchResults();
+        hideSearchField();
         scrollToTop();
         closeSidebar();
 
@@ -36,18 +39,3 @@ function scrollToTop() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
-
-function closeSidebar() {
-    document.getElementById("docs-sidebar-toggle").checked = false;
-}
-
-// hide sidebar on click outside
-document.addEventListener("click", function(e) {
-    if (e.x <= 260) {
-        return;
-    }
-
-    document.getElementById("docs-sidebar-toggle").checked = false;
-});
-
-export { closeSidebar };

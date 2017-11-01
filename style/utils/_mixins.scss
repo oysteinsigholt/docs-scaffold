@@ -1,6 +1,13 @@
 @mixin docs-glyph-hover() {
+  display: block;
+  flex: 0 0 48px;
+  width: 48px;
   color: $docs-color--black54;
+  font-size: 32px;
+  text-align: center;
   cursor: pointer;
+  overflow: hidden;
+  box-sizing: border-box;
 
   &:hover {
     transition: color .1s ease;
