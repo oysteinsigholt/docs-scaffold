@@ -201,7 +201,7 @@ gulp.task("layout:watch", () => {
     gulp.watch(
         [`${ layoutFolder }/*.hbs`, `${ layoutFolder }/**/*.hbs`],
         ["docs:dev", "connect:reload"]
-    );
+    ).on("error", swallowError);
 });
 
 gulp.task("clean", (cb) => {
