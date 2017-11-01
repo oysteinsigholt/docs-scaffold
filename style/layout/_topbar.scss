@@ -16,7 +16,7 @@
     }
 
     @media only screen and (max-width: 1024px) {
-      max-width: 1024px;
+      max-width: 100vw;
     }
 
     display: flex;
@@ -35,7 +35,10 @@
         display: none;
       }
 
-      .docs-search-hide,
+      .docs-search-hide {
+        display: block !important;
+      }
+
       .docs-search-box {
         opacity: 1 !important;
         pointer-events: auto !important;
@@ -82,12 +85,19 @@
     pointer-events: none;
   }
 
-  .docs-search-hide,
+  .docs-search-hide {
+    @media only screen and (max-width: 1024px) {
+      display: none;
+    }
+  }
+
   .docs-search-box {
     @media only screen and (max-width: 1024px) {
       opacity: 0;
       pointer-events: none;
     }
+
+    overflow: hidden;
   }
 
   .docs-search-show {
