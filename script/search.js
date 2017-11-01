@@ -51,13 +51,8 @@ function initHandlers() {
 
     // hide search results on click outside
     document.addEventListener("click", function(e) {
-        if (e.path.includes(document.getElementById("docs-search"))) {
+        if (document.getElementById("docs-topbar").contains(e.target)) {
             return;
-        }
-        if (e.path.includes(document.getElementById("docs-topbar"))) {
-            if (!e.path.includes(document.getElementById("docs-menu-toggle"))) {
-                return;
-            }
         }
 
         hideSearchResults();
