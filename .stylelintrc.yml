@@ -6,3 +6,6 @@ rules:
   - ignoreAtRules:
     - 'include'
     - 'mixin'
+    - 'if'
+    - 'else'
+    - 'content'

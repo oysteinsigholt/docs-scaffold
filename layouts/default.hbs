@@ -32,22 +32,22 @@
 <body class="docs-body">
   <div id="docs-topbar" class="docs-topbar">
     <div id="docs-topbar__inner" class="docs-topbar__inner">
-      <a href="#" id="docs-menu-toggle" class="docs-topbar-icon docs-menu-toggle"><i class="material-icons md-64">menu</i></a>
-      <a href="#" id="docs-search-hide" class="docs-topbar-icon docs-search-hide"><i class="material-icons md-64">arrow_back</i></a>
-      <div class="docs-topbar-icon docs-search-icon"><i class="material-icons md-64">search</i></div>
-      <input id="docs-search-box" type="text" class="docs-search-box" placeholder="Search" tabindex="1" autocapitalize="none" autocomplete="off" autocorrect="off" autofocus />
-      <a href="#" id="docs-search-close" class="docs-topbar-icon docs-search-close"><i class="material-icons md-64">close</i></a>
-      <a href="#" id="docs-search-show" class="docs-topbar-icon docs-search-show"><i class="material-icons md-64">search</i></a>
+      <a href="#" id="docs-menu-toggle" class="docs-topbar__icon docs-topbar__icon--menu-toggle hidden-desktop"><i class="material-icons md-64">menu</i></a>
+      <a href="#" id="docs-search-hide" class="docs-topbar__icon docs-topbar__icon--search-hide hidden-desktop"><i class="material-icons md-64">arrow_back</i></a>
+      <div class="docs-topbar__icon docs-topbar__icon--search visible-desktop"><i class="material-icons md-64">search</i></div>
+      <input id="docs-search-box" type="text" class="docs-topbar__search-box" placeholder="Search" tabindex="1" autocapitalize="none" autocomplete="off" autocorrect="off" autofocus />
+      <a href="#" id="docs-search-close" class="docs-topbar__icon docs-topbar__icon--search-close"><i class="material-icons md-64">close</i></a>
+      <a href="#" id="docs-search-show" class="docs-topbar__icon docs-topbar__icon-search-show hidden-desktop"><i class="material-icons md-64">search</i></a>
 
       {{#each menuLinks}}
-          <a class="docs-topbar__link" href="{{ this }}">{{ @key }}</a>
+          <a class="docs-topbar__link visible-desktop" href="{{ this }}">{{ @key }}</a>
       {{/each}}
     </div>
     <div id="docs-search" class="docs-search">
       <ul id="docs-search-results" class="docs-search-results"></ul>
     </div>
   </div>
-  <div id="docs-sidebar" class="docs-sidebar">
+  <div id="docs-sidebar" class="docs-sidebar visible-desktop">
     <nav class="docs-nav">
       <a class="docs-nav__logo" href="{{ webRoot }}"></a>
         {{> _nav navs.primary}}
@@ -59,7 +59,7 @@
           <hr class="docs-nav__hr" />
           {{> _nav navs.tertiary}}
         {{/if}}
-        <div class="docs-menuLinks">
+        <div class="docs-sidebar__menuLinks hidden-desktop">
           <hr class="docs-nav__hr" />
           <ul class="docs-nav__ul">
             {{#each menuLinks}}
