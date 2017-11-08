@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 260px;
   padding: 0 0 16px;
-  padding-left: calc(50% - 764px / 2 - 260px + .5 * (100vw - 100%));
+  padding-left: calc(50% - 764px / 2 - 260px);
   box-sizing: content-box;
   border-right: 10000px solid $docs-color--black54;
   background-clip: padding-box;

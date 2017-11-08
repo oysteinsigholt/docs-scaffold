@@ -11,7 +11,7 @@
   @include desktop {
     max-width: 764px;
     margin-left: 260px;
-    padding-left: calc(50% - 764px / 2 - 260px + .5 * (100vw - 100%));
+    padding-left: calc(50% - 764px / 2 - 260px);
   }
 
   &-area {
