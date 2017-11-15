@@ -4,4 +4,8 @@ html {
 
 .docs-body {
   min-width: 320px;
+
+  @include desktop {
+    overflow-x: hidden;
+  }
 }

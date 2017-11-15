@@ -1,5 +1,5 @@
 .docs-content {
-  max-width: 100%;
+  max-width: $docs-width-content--mobile;
   padding: 24px;
   padding-top: 88px;
   overflow: auto;
@@ -7,7 +7,8 @@
   pointer-events: auto;
 
   @include desktop {
-    max-width: 764px;
+    max-width: $docs-width-content--desktop;
+    margin: auto;
     padding: 48px;
     padding-top: 110px;
   }

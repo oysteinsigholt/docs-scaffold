@@ -9,9 +9,9 @@
   background-color: $docs-color-background--default;
 
   @include desktop {
-    max-width: 764px;
-    margin-left: 260px;
-    padding-left: calc(50% - 764px / 2 - 260px);
+    width: $docs-width-content--desktop + $docs-width-sidebar * 2;
+    max-width: $docs-width-content--desktop + $docs-width-sidebar * 2;
+    margin: auto;
   }
 
   &-area {
@@ -42,7 +42,10 @@
     word-wrap: break-word;
 
     @include desktop {
+      max-width: $docs-width-content--desktop;
+      margin: auto;
       padding: 12px 48px 48px;
+      box-sizing: border-box;
     }
 
     h2 {

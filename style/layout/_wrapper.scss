@@ -7,7 +7,7 @@
   pointer-events: none;
 
   @include desktop {
-    margin-left: 260px;
-    padding-left: calc(50% - 764px / 2 - 260px);
+    width: $docs-width-content--desktop + $docs-width-sidebar * 2;
+    margin: auto;
   }
 }

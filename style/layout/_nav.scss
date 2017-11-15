@@ -4,9 +4,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  max-width: 260px;
+  max-width: $docs-width-sidebar;
   padding: 0 0 16px;
-  padding-left: calc(50% - 764px / 2 - 260px);
   box-sizing: content-box;
   border-right: 10000px solid $docs-color--black54;
   background-clip: padding-box;
@@ -17,7 +16,8 @@
 
   @include desktop {
     top: 0;
-    width: 260px;
+    width: $docs-width-sidebar;
+    padding-left: calc(50% - #{$docs-width-content--desktop} / 2 - #{$docs-width-sidebar});
     border-right: none;
     background-color: $docs-color-background--accent;
   }
@@ -37,13 +37,13 @@
     background-image: url(../logo.svg);
     background-repeat: no-repeat;
     background-position: 16px center;
-    background-size: 150px auto;
+    background-size: $docs-width-logo--mobile auto;
     box-sizing: border-box;
 
     @include desktop {
       margin-bottom: 40px;
       border-bottom: none;
-      background-size: 180px auto;
+      background-size: $docs-width-logo--desktop auto;
     }
   }
 
